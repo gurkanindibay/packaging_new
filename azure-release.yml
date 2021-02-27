@@ -12,12 +12,12 @@ jobs:
           TARGET_PLATFORM: el/8
           PACKAGECLOUD_API_TOKEN: 693cb52ac46e8811a0d73c8ca96d8cb1330369c4
           REPO_NAME: sample
-          PKG_REPO_TYPE: community
+          PKG_REPOTYPE: community
         el7:
           TARGET_PLATFORM: el/7
           PACKAGECLOUD_API_TOKEN: 693cb52ac46e8811a0d73c8ca96d8cb1330369c4
           REPO_NAME: sample
-          PKG_REPO_TYPE: community
+          PKG_REPOTYPE: community
     pool:
       vmImage: 'ubuntu-latest'
     container: gurkanindibay/pg-auto-failover-build:latest
