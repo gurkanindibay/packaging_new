@@ -27,6 +27,7 @@ jobs:
           target-platform: el/8
         el7:
           target-platform: el/7
+    pool:
       vmImage: 'ubuntu-latest'
     container: gurkanindibay/pg-auto-failover-build:latest
     steps:
