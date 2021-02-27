@@ -21,6 +21,6 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-      - script: git clone --single-branch --branch pg_auto_failover_build https://github.com/citusdata/tools.git && make -C tools install
+      - script: git clone --single-branch --branch pg_auto_failover_build https://github.com/citusdata/tools.git && sudo make -C tools install
       - script: build_new_release
       - script: python upload_to_packagecloud.py $(TARGET_PLATFORM) $(PACKAGECLOUD_API_TOKEN)  $(REPO_NAME)
