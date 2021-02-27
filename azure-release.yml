@@ -20,7 +20,6 @@ jobs:
           PKG_REPOTYPE: community
     pool:
       vmImage: 'ubuntu-latest'
-    container: gurkanindibay/pg-auto-failover-build:latest
     steps:
       - script: build_new_release
       - script: python upload_to_packagecloud.py $(TARGET_PLATFORM) $(PACKAGECLOUD_API_TOKEN)  $(REPO_NAME)
