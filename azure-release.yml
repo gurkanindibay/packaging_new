@@ -1,20 +1,5 @@
 name: "Release Pipeline for Pg Auto Failover"
 pr: none
-parameters:
-- name: PACKAGECLOUD_API_TOKEN
-  displayName: Package Cloud API Token
-  default: 0
-  type: string
-- name: REPO_NAME
-  displayName: Repository Name
-  default: sample
-  values:
-    - sample
-    - citusdata/enterprise
-    - citusdata/community
-    - citusdata/community-nightlies
-    - citusdata/enterprise-nightlies
-    - citusdata/azure
 trigger:
   - none
 jobs:
