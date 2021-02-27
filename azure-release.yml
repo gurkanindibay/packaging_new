@@ -24,9 +24,9 @@ jobs:
       maxParallel: 5
       matrix:
         el8:
-          target-platform: el/8
+          TARGET_PLATFORM: el/8
         el7:
-          target-platform: el/7
+          TARGET_PLATFORM: el/7
     pool:
       vmImage: 'ubuntu-latest'
     container: gurkanindibay/pg-auto-failover-build:latest
