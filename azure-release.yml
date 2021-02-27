@@ -10,12 +10,12 @@ jobs:
       matrix:
         el8:
           TARGET_PLATFORM: el/8
-          PACKAGECLOUD_API_TOKEN: 693cb52ac46e8811a0d73c8ca96d8cb1330369c4
+          PACKAGECLOUD_API_TOKEN: cf058e6c1453b02742cae518499e80dd13a3e9a0893509fd
           REPO_NAME: sample
           PKG_REPOTYPE: community
         el7:
           TARGET_PLATFORM: el/7
-          PACKAGECLOUD_API_TOKEN: 693cb52ac46e8811a0d73c8ca96d8cb1330369c4
+          PACKAGECLOUD_API_TOKEN: cf058e6c1453b02742cae518499e80dd13a3e9a0893509fd
           REPO_NAME: sample
           PKG_REPOTYPE: community
     pool:
