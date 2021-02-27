@@ -25,8 +25,12 @@ jobs:
       matrix:
         el8:
           TARGET_PLATFORM: el/8
+          PACKAGECLOUD_API_TOKEN: 693cb52ac46e8811a0d73c8ca96d8cb1330369c4
+          REPO_NAME: sample
         el7:
           TARGET_PLATFORM: el/7
+          PACKAGECLOUD_API_TOKEN: 693cb52ac46e8811a0d73c8ca96d8cb1330369c4
+          REPO_NAME: sample
     pool:
       vmImage: 'ubuntu-latest'
     container: gurkanindibay/pg-auto-failover-build:latest
