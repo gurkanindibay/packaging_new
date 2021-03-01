@@ -15,13 +15,7 @@ jobs:
           PKG_REPOTYPE: community
           GITHUB_TOKEN: 43106393b6ae2f6bd6323e605c2e7be70bce2144
           TRAVIS: true
-        el7:
-          TARGET_PLATFORM: el/7
-          PACKAGECLOUD_API_TOKEN: cf058e6c1453b02742cae518499e80dd13a3e9a0893509fd
-          REPO_NAME: sample
-          PKG_REPOTYPE: community
-          GITHUB_TOKEN: 43106393b6ae2f6bd6323e605c2e7be70bce2144
-          TRAVIS: true
+
     pool:
       vmImage: 'ubuntu-latest'
     steps:
