@@ -21,7 +21,7 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-      - script: sudo apt install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.9 && python3.9 --version && sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
+      - script: echo ${GITHUB_TOKEN} && sudo apt install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.9 && python3.9 --version && sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
       - script: python --version &&  git clone --single-branch --branch pg_auto_failover_build https://github.com/citusdata/tools.git && sudo make -C tools install 
       - script: build_new_release
       - script: ls ./pkgs/releases && ls && python ./tools/travis/upload_to_package_cloud.py $(TARGET_PLATFORM) $(PACKAGECLOUD_API_TOKEN)  $(REPO_NAME)
