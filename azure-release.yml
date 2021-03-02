@@ -3,14 +3,10 @@ pr: none
 trigger:
   - none
 variables:
-- name: PACKAGECLOUD_API_TOKEN
-  value: cf058e6c1453b02742cae518499e80dd13a3e9a0893509fd 
 - name: REPO_NAME
   value: sample
 - name: PKG_REPOTYPE
   value: community
-- name: GITHUB_TOKEN
-  value: 43106393b6ae2f6bd6323e605c2e7be70bce2144
 - name: TRAVIS
   value: true
 jobs:
