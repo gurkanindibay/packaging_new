@@ -1,7 +1,7 @@
 rpm_pkgname=pg-auto-failover
 deb_pkgname=auto-failover
 hubproj=pg_auto_failover
-pkgdesc='Postgres extension for automated failover and high-availability'
+pkgdesc='Postgres extension for automated failover and high-availability's
 pkglatest=1.4.1-1
 releasepg=10,11,12,13
 versioning=fancy
