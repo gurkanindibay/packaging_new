@@ -52,6 +52,6 @@ jobs:
         run: |
           python --version &&  git clone --single-branch --branch pg_auto_failover_build https://github.com/citusdata/tools.git && sudo make -C tools install 
       - name: Build New Release
-        run: build_new_release
+        run: python ./tools/travis/test.py&& build_new_release
       - name: Upload new packages
         run: ls ./pkgs/releases && ls && python ./tools/travis/upload_to_package_cloud.py ${TARGET_PLATFORM} ${PACKAGECLOUD_API_TOKEN}  ${REPO_NAME}
