@@ -30,10 +30,15 @@ jobs:
     
     strategy:
       matrix:
-        TARGET_PLATFORM: [el/8, el/7]
+        include: 
+          - distro: "el/7"
+            TARGET_PLATFORM: el/7
+          - distro: "el/8"
+            TARGET_PLATFORM: el/8
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
@@ -45,7 +50,9 @@ jobs:
       - name: Checkout Tools and Install 
         run: |
           python --version &&  git clone --single-branch --branch pg_auto_failover_build https://github.com/citusdata/tools.git && sudo make -C tools install 
-      - name: Checkout Tools and Install 
+      - name: Checkout Tools and Install
+        env: 
+          TARGET_PLATFORM: ${{ matrix.TARGET_PLATFORM }}
         run: build_new_release
       - name: Upload new packages
         run: ls ./pkgs/releases && ls && python ./tools/travis/upload_to_package_cloud.py $(TARGET_PLATFORM) $(PACKAGECLOUD_API_TOKEN)  $(REPO_NAME)
