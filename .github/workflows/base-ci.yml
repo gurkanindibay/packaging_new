@@ -34,6 +34,8 @@ jobs:
         include: 
           - distro: "el/8"
             TARGET_PLATFORM: el/8
+          - distro: "el/7"
+            TARGET_PLATFORM: el/7
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     env: 
