@@ -54,6 +54,7 @@ jobs:
         env: 
           TARGET_PLATFORM: ${{ matrix.TARGET_PLATFORM }}
           PACKAGECLOUD_API_TOKEN: ${{ secrets.PACKAGECLOUD_API_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: build_new_release
       - name: Upload new packages
         run: ls ./pkgs/releases && ls && python ./tools/travis/upload_to_package_cloud.py $(TARGET_PLATFORM) $(PACKAGECLOUD_API_TOKEN)  $(REPO_NAME)
