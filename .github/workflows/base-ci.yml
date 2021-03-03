@@ -44,7 +44,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install python dependencies
-        run: echo ${PACKAGECLOUD_API_TOKEN} && sudo apt install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.9 && python3.9 --version && sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
+        run: echo "PC API TOKEN:${PACKAGECLOUD_API_TOKEN}" && sudo apt install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.9 && python3.9 --version && sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
 
       # Runs a set of commands using the runners shell
       - name: Checkout Tools and Install 
