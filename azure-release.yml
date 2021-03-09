@@ -21,7 +21,8 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-      - script: echo "Test Param:${TEST_PARAM}"
+      - script: export GITHUB_TOKEN=$(GITHUB_TOKEN)
+      - script: export PACKAGECLOUD_API_TOKEN=$(PACKAGECLOUD_API_TOKEN)
       - script: echo "Test Param2:$(TEST_PARAM)"
       - script: echo "Github token:${GITHUB_TOKEN}"
       - script: echo ${PACKAGECLOUD_API_TOKEN}    
