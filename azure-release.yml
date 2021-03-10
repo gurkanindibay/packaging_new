@@ -28,5 +28,5 @@ jobs:
         env:
           GITHUB_TOKEN: $(GITHUB_TOKEN)
           PACKAGECLOUD_API_TOKEN: $(PACKAGECLOUD_API_TOKEN)
-      - script: ls ./pkgs/releases && ls && python ./tools/travis/upload_to_package_cloud.py $(TARGET_PLATFORM) $(PACKAGECLOUD_API_TOKEN)  $(REPO_NAME)
+      - script: ./tools/travis/microsoft_package_manager/add_test_prefix_on_filenames.sh && ./tools/travis/microsoft_package_manager/configure_microsoft_packages.sh && ./tools/travis/microsoft_package_manager/publish_packages.py
       
