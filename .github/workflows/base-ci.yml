@@ -49,5 +49,9 @@ jobs:
           python --version &&  git clone --single-branch --branch pg_auto_failover_build https://github.com/citusdata/tools.git && sudo make -C tools install 
       - name: Build New Release
         run: echo $GITHUB_TOKEN | docker login ghcr.io -u gurkanindibay --password-stdin && build_new_release
-      - name: Upload new packages
+      - name: Rename files for tests
+        run: chmod +x ./tools/travis/add_test_prefix_on_filenames.sh && ./tools/travis/add_test_prefix_on_filenames.sh && mkdir signed-packages && cp -R ./pkgs/releases/. ./signed-packages && chmod +x ./tools/travis/configure_microsoft_packages.sh
+      - name: Upload new packages to packagecloud
         run: ls ./pkgs/releases && ls && python ./tools/travis/upload_to_package_cloud.py ${TARGET_PLATFORM} ${PACKAGECLOUD_API_TOKEN}  ${REPO_NAME}
+      - name: Upload new packages to MS Packages
+        run: ./tools/travis/configure_microsoft_packages.sh -p "$(pwd)/tools/travis" && python tools/travis/publish-packages.py ${TARGET_PLATFORM}
