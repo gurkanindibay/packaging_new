@@ -8,6 +8,8 @@ env:
   TRAVIS: true
   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
   PACKAGECLOUD_API_TOKEN: ${{ secrets.PACKAGECLOUD_API_TOKEN }}
+  REPO_CLIENT_SECRET: ${{ secrets.REPO_CLIENT_SECRET }}
+
   
 
 # Controls when the action will run. 
