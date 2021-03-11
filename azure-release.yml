@@ -22,7 +22,7 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-      - script: ./test.sh &&echo ${GITHUB_TOKEN} && sudo apt install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.9 && python3.9 --version && sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
+      - script: echo ${GITHUB_TOKEN} && sudo apt install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.9 && python3.9 --version && sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
       - script: python --version &&  git clone --single-branch --branch pg_auto_failover_build https://github.com/citusdata/tools.git && sudo make -C tools install 
       - script: mkdir -p pkgs && mkdir -p pkgs/releases && mkdir signed-packages && cp -R ./pkgs/releases/. ./signed-packages && chmod +x ./tools/travis/add_test_prefix_on_filenames.sh && chmod +x ./tools/travis/configure_microsoft_packages.sh 
       - script: pwd && ls -la &&./tools/travis/add_test_prefix_on_filenames.sh && bash ./tools/travis/configure_microsoft_packages.sh -p "$(pwd)/tools/travis" && python ./publish_packages.py
