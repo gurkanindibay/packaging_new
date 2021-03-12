@@ -56,4 +56,4 @@ jobs:
       - name: Upload new packages to packagecloud
         run: ls ./pkgs/releases && ls && python ./tools/travis/upload_to_package_cloud.py ${TARGET_PLATFORM} ${PACKAGECLOUD_API_TOKEN}  ${REPO_NAME}
       - name: Upload new packages to MS Packages
-        run: ./tools/travis/configure_microsoft_packages.sh -p "$(pwd)/tools/travis" && python tools/travis/publish-packages.py ${TARGET_PLATFORM}
+        run: ls ./signed-packages && ./tools/travis/configure_microsoft_packages.sh -p "$(pwd)/tools/travis" && python tools/travis/publish-packages.py ${TARGET_PLATFORM}
