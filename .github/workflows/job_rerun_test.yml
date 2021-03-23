@@ -81,7 +81,7 @@ jobs:
 
     - name: Save run status
       if: ${{ always() }}
-      run: echo "${{ steps.test_run.outcome }}" > ~/.status
+      run: echo "${{ job.status }}" > ~/.status
     - name: Read run status
       if: ${{ always() }}
       run: cat ~/.status
