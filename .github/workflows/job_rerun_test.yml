@@ -80,7 +80,8 @@ jobs:
    
 
     - name: Save run status
-      if: steps.last_run_status.outputs.last_run_status != 'success'
+      if: ${{ always() }}
       run: echo "::set-output name=last_run_status::${{ steps.test_run.outcome }}" > ~/.status
     - name: Read run status
+      if: ${{ always() }}
       run: cat ~/.status
