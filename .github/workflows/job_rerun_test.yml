@@ -55,10 +55,11 @@ jobs:
       run:  cat ~/.status
       
     - name: Set default run status
-      run:  echo "::set-output name=last_run_status::$(<~/.status )"
+      id: run_status
+      run:  echo "::set-output name=last_run_status::$(cat ~/.status)"
 
     - name: Log status
-      run: echo "${{ steps.date.outputs.last_run_status }}"
+      run: echo "${{ steps.run_status.outputs.last_run_status }}"
 
 
     - name: Checkout ref
