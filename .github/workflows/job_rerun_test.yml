@@ -36,6 +36,8 @@ jobs:
 
     - name: Log date
       run: echo "${{ steps.date.outputs.date }}"
+    - name: create cache file if not exist
+      run: [ -z ~/.status ]&&echo "initial" > ~/.status
 
 
     
