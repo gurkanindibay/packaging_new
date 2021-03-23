@@ -37,21 +37,22 @@ jobs:
     - name: Log date
       run: echo "${{ steps.date.outputs.date }}"
 
-    - name: Set default run status
-      run: echo "::set-output name=last_run_status::default" > last_run_status
 
-    - name: Log status
-      run: echo "${{ steps.date.outputs.last_run_status }}"
     
     - name: Restore last run status
       id: last_run
       uses: actions/cache@v2
       with:
-        path: |
-          last_run_status
+        path: ~/.status
         key: ${{ github.run_id }}-${{ matrix.os }}-${{ matrix.node-version }}-${{ matrix.webpack }}-${{ steps.date.outputs.date }}
         restore-keys: |
           ${{ github.run_id }}-${{ matrix.os }}-${{ matrix.node-version }}-${{ matrix.webpack }}-
+      
+    - name: Set default run status
+      run:  echo "::set-output name=last_run_status::$(<~/.status )"
+
+    - name: Log status
+      run: echo "${{ steps.date.outputs.last_run_status }}"
 
 
     - name: Checkout ref
@@ -73,4 +74,4 @@ jobs:
 
     - name: Save run status
       if: steps.last_run_status.outputs.last_run_status != 'success'
-      run: echo "::set-output name=last_run_status::${{ steps.test_run.outcome }}" > last_run_status
+      run: echo "::set-output name=last_run_status::${{ steps.test_run.outcome }}" > ~/.status
