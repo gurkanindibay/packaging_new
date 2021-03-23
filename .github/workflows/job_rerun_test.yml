@@ -69,12 +69,12 @@ jobs:
     
     - name: Log Cache Params
       id: log_cahce_params
-      if: steps.cache.outputs.cache-hit != 'true' && steps.last_run_status.outputs.last_run_status != 'success'
-      run:  echo "Cache Hit:${{ steps.cache.outputs.cache-hit }} Status:${{ steps.last_run_status.outputs.last_run_status }} "
+      if: steps.cache.outputs.cache-hit != 'true' && ${{ steps.run_status.outputs.last_run_status }} != 'success'
+      run:  echo "Cache Hit:${{ steps.cache.outputs.cache-hit }} Status:${{ steps.run_status.outputs.last_run_status }}"
 
     - name: Test Task
       id: test_success_task
-      if: steps.cache.outputs.cache-hit != 'true' && steps.last_run_status.outputs.last_run_status != 'success'
+      if: steps.cache.outputs.cache-hit != 'true' && steps.run_status.outputs.last_run_status != 'success'
       run:  param=$((1 + $RANDOM % 10)) && echo "Param:${param}" && if [ $((param%2)) -eq 0 ]; then exit 1; else echo "success"; fi
 
    
