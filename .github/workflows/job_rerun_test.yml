@@ -61,7 +61,7 @@ jobs:
     - name: Log Cache Params
       id: log_cahce_params
       if: steps.cache.outputs.cache-hit != 'true' && steps.last_run_status.outputs.last_run_status != 'success'
-      run:  echo "Cache Hit:$ {{ steps.cache.outputs.cache-hit }} Status:${{ steps.last_run_status.outputs.last_run_status }} "
+      run:  echo "Cache Hit:${{ steps.cache.outputs.cache-hit }} Status:${{ steps.last_run_status.outputs.last_run_status }} "
 
     - name: Test Task
       id: test_success_task
