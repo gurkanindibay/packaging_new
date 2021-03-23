@@ -49,9 +49,7 @@ jobs:
         key: ${{ github.run_id }}-${{ matrix.os }}-${{ matrix.node-version }}-${{ matrix.webpack }}-${{ steps.date.outputs.date }}
         restore-keys: |
           ${{ github.run_id }}-${{ matrix.os }}-${{ matrix.node-version }}-${{ matrix.webpack }}-
-    - name: Set last run status
-      id: last_run_status
-      run: cat last_run_status
+
 
     - name: Checkout ref
       uses: actions/checkout@v2
