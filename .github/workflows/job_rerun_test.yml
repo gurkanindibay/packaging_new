@@ -40,6 +40,9 @@ jobs:
     - name: Set default run status
       run: echo "::set-output name=last_run_status::default" > last_run_status
 
+    - name: Log status
+      run: echo "${{ steps.date.outputs.last_run_status }}"
+    
     - name: Restore last run status
       id: last_run
       uses: actions/cache@v2
