@@ -7,11 +7,11 @@ Summary:	PostgreSQL-based distributed RDBMS
 Name:		%{sname}%{?pkginfix}_%{pgmajorversion}
 Provides:	%{sname}_%{pgmajorversion}
 Conflicts:	%{sname}_%{pgmajorversion}
-Version:	9.4.3.citus
+Version:	9.5.1.citus
 Release:	1%{dist}
 License:	AGPLv3
 Group:		Applications/Databases
-Source0:	https://github.com/citusdata/citus/archive/v9.4.3.tar.gz
+Source0:	https://github.com/citusdata/citus/archive/v9.5.1.tar.gz
 URL:		https://github.com/citusdata/citus
 BuildRequires:	postgresql%{pgmajorversion}-devel libcurl-devel
 Requires:	postgresql%{pgmajorversion}-server
@@ -43,10 +43,31 @@ make %{?_smp_mflags}
 # Install documentation with a better name:
 %{__mkdir} -p %{buildroot}%{pginstdir}/doc/extension
 %{__cp} README.md %{buildroot}%{pginstdir}/doc/extension/README-%{sname}.md
+# Set paths to be packaged other than LICENSE, README & CHANGELOG.md
+echo %{pginstdir}/include/server/citus_*.h >> installation_files.list
+echo %{pginstdir}/include/server/distributed/*.h >> installation_files.list
+echo %{pginstdir}/lib/%{sname}.so >> installation_files.list
+echo %{pginstdir}/share/extension/%{sname}-*.sql >> installation_files.list
+echo %{pginstdir}/share/extension/%{sname}.control >> installation_files.list
+%ifarch ppc64 ppc64le
+  %else
+  %if 0%{?rhel} && 0%{?rhel} <= 6
+  %else
+    echo %{pginstdir}/lib/bitcode/%{sname}/*.bc >> installation_files.list
+    echo %{pginstdir}/lib/bitcode/%{sname}*.bc >> installation_files.list
+    echo %{pginstdir}/lib/bitcode/%{sname}/*/*.bc >> installation_files.list
+    
+    # Columnar does not exist in Citus versions < 10.0
+    # At this point, we don't have %{pginstdir},
+    # so first check build directory for columnar.
+    [[ -d %{buildroot}%{pginstdir}/lib/bitcode/columnar/ ]] && echo %{pginstdir}/lib/bitcode/columnar/*.bc >> installation_files.list
+  %endif
+%endif
 
 %clean
 %{__rm} -rf %{buildroot}
 
+%files -f installation_files.list
 %files
 %defattr(-,root,root,-)
 %doc CHANGELOG.md
@@ -56,22 +77,11 @@ make %{?_smp_mflags}
 %license LICENSE
 %endif
 %doc %{pginstdir}/doc/extension/README-%{sname}.md
-%{pginstdir}/include/server/citus_*.h
-%{pginstdir}/include/server/distributed/*.h
-%{pginstdir}/lib/%{sname}.so
-%{pginstdir}/share/extension/%{sname}-*.sql
-%{pginstdir}/share/extension/%{sname}.control
-%ifarch ppc64 ppc64le
-  %else
-  %if 0%{?rhel} && 0%{?rhel} <= 6
-  %else
-    %{pginstdir}/lib/bitcode/%{sname}*.bc
-    %{pginstdir}/lib/bitcode/%{sname}/*.bc
-    %{pginstdir}/lib/bitcode/%{sname}/*/*.bc
-  %endif
-%endif
 
 %changelog
+* Wed Dec 2 2020 - Onur Tirtir <Onur.Tirtir@microsoft.com> 9.5.1.citus-1
+- Official 9.5.1 release of Citus
+
 * Tue Nov 24 2020 - Onur Tirtir <Onur.Tirtir@microsoft.com> 9.4.3.citus-1
 - Official 9.4.3 release of Citus
 
