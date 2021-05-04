@@ -31,7 +31,5 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Print Trigger Type
-        run: echo "${{ github.event.action }}"
+        run: echo "${GITHUB_EVENT_NAME}"
         
-      - name: Print Trigger Type 2
-        run: echo "${{ github.event }}"
