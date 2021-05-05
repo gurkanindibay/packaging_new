@@ -31,5 +31,5 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Print Trigger Type
-        run: echo "${GITHUB_EVENT_NAME}"
+        run: echo "${GITHUB_EVENT_NAME}" "${GITHUB_REF}"
         
