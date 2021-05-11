@@ -10,8 +10,8 @@ on:
       - '**' 
     tags: 
       - '**'
-  schedule:
-     - cron:  '* * * * *'
+#   schedule:
+#      - cron:  '* * * * *'
   pull_request:
     branches: 
       - '**'
